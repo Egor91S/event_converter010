@@ -4,27 +4,14 @@ import os
 
 st.set_page_config(page_title="Event Converter", page_icon="✅", layout="centered")
 
-# --- HYDE STREAMLIT STYLE ---
-
-hyde_st_style = """
-                <style>
-                #MainMenu {visibility: hidden;}
-                footer {visibility: hidden;}
-                header {visibility: hidden;}
-                </style>"""
-st.markdown(hyde_st_style, unsafe_allow_html=True)
-
 
 def main():
     date_time = []
     st.header("Event Converter")
 
-    file = st.file_uploader("Upload file")
-    if file is not None:
-        file_details = {"FileName": file.name, "FileType": file.type}
-        path = os.path.abspath(file_details["FileName"])
-
-        log_data = read_data(path)
+    uploaded_file = st.file_uploader("Upload .LOG file", type=".LOG")
+    if uploaded_file is not None:
+        log_data = uploaded_file.getvalue().decode('utf-8').splitlines()
 
         text_date = [text[7:17].replace(".", "") for text in log_data if text.startswith("0000")]
         text_time = [text[18:26] for text in log_data if text.startswith("0000")]
