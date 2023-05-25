@@ -13,10 +13,10 @@ def main():
     if uploaded_file is not None:
         log_data = uploaded_file.getvalue().decode('utf-8').splitlines()
 
-        text_date = [text[7:17].replace(".", "") for text in log_data if text.startswith("0000")]
-        text_time = [text[18:26] for text in log_data if text.startswith("0000")]
-        text_easting = [text[31:41] for text in log_data if text.startswith("0000")]
-        text_northing = [text[42:53] for text in log_data if text.startswith("0000")]
+        text_date = [text[7:17].replace(".", "") for text in log_data if text.startswith("00")]
+        text_time = [text[18:26] for text in log_data if text.startswith("00")]
+        text_easting = [text[31:41] for text in log_data if text.startswith("00")]
+        text_northing = [text[42:53] for text in log_data if text.startswith("00")]
 
         for i in range(len(text_date)):
             date_time.append(f"{text_date[i]}/{text_time[i]}")
